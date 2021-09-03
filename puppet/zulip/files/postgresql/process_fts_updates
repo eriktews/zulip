@@ -102,7 +102,13 @@ pg_args = {}
 USING_PGROONGA = False
 try:
     # Case (1); we insert the path to the development root.
+    sys.path.insert(0, "/home/zulip/deployments/current")
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../..")))
+
+    from scripts.lib.setup_path import setup_path
+
+    setup_path()
+
     # Case (2) could take this branch if it set up the venv first, but
     # there is no reason to unnecessarily bring in the Django
     # dependency; it will fall into the path below due the venv not
